@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      {{ profile_updateform|crispy }}
+      <button class="btn" type="submit" name="" value="Update">Update</button>
+    </form>
+  {% else %}
+    <h1>You need to login!</h1>
+  {% endif %}
+
+{% endblock %}

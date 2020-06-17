@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}!</h1>
+  <h4>Here are users on boarded</h4>
+  <form class="form-group" method="POST" >
+    {% if messages %}
+      {% include 'messages.html' %}
+    {% endif %}
+    {% csrf_token %}
+    {% include 'account/user-list.html' %}
+    <hr>
+    <input class="btn btn-danger" value="Delete User" type="submit" role="button">
+  </form>
+{% else %}
+  <p>You are not logged in</p>
+  <div>
+    <a type="button" href="{% url 'login' %}">login</a>
+  </div>
+  <div>
+    <a type="button" href="{% url 'account:signup' %}">Sign Up</a>
+  </div>
+{% endif %}
+{% endblock %}
