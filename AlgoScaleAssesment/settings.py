@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from django.urls import reverse_lazy
 
+import json
+with open('credentials.json') as f:
+    credentails = json.load(f)
+    USEREMAIL = credentails['email']
+    USERPASSWORD = credentails['password']
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -144,3 +150,16 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+
+# Credentials
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = USEREMAIL
+EMAIL_HOST_PASSWORD = USERPASSWORD
+EMAIL_PORT = 587
+
+
+# Authrntication for Inactive Users
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']

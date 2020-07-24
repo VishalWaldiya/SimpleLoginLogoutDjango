@@ -48,3 +48,6 @@ Thumbs.db
 */__pycache__/*
 */migrations/*
 *.sqlite3
+
+# crendatials
+*/credentials.json
